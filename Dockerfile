@@ -1,17 +1,17 @@
-# Use Node.js base image
-FROM node:14
+# Use Google-hosted Node.js base image (avoids Docker Hub issues)
+FROM gcr.io/google-appengine/nodejs
 
 # Set working directory
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json, then install dependencies
+# Copy package.json and install dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy the application files
+# Copy application source files
 COPY . .
 
-# Expose the port the app will run on
+# Expose port 8080 (adjust as needed)
 EXPOSE 8080
 
 # Start the application
